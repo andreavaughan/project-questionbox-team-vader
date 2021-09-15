@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import { Link } from 'react-router-dom'
 import '../styles/nav.css'
 
 export const Nav = () => {
@@ -9,9 +10,11 @@ export const Nav = () => {
                     <div className="main-nav">
                         <a href="/" class="navbar-brand">QBox</a>
                         <ul className="navbar-nav">
-                            <li className="nav-item">
-                                <a href="/" className="nav-link active">Profile</a>
-                            </li>
+                            <Link to="/profile">
+                                <li className="nav-item nav-link active">
+                                    Profile
+                                </li>
+                            </Link>
                         </ul>
                     </div>
                     <div className="end-nav">
@@ -27,7 +30,9 @@ export const Nav = () => {
                         </form>
                         <div>
                             <button type="button" className="btn btn-dark">Sign up</button>
-                            <button type="button" className="btn btn-light">Log in</button>
+                            <Link to="/login">
+                                <button type="button" className="btn btn-light">Log in</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
