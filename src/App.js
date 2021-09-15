@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { questions as data } from './test-data'
+import { Nav } from './components/Nav'
 import { Questions } from './components/Questions'
 
 export const App = () => {
@@ -7,7 +8,7 @@ export const App = () => {
 
     return (
         <div className="">
-            <h1>Project Questionbox</h1>
+            <Nav />
             <Questions questions={questions} />
         </div>
     )
