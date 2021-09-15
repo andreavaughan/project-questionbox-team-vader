@@ -1,0 +1,13 @@
+.main-nav {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.end-nav {
+  display: flex;
+  flex-wrap: row nowrap;
+}
+
+.nav-search {
+  padding-right: 0.5em;
+}
