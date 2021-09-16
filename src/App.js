@@ -5,6 +5,8 @@ import { Nav } from './components/Nav'
 import { Questions } from './components/Questions'
 import { Login } from './components/Login'
 import { Profile } from './components/Profile'
+import { AddQuestion } from './components/AddQuestion';
+
 
 
 export const App = () => {
@@ -24,6 +26,7 @@ export const App = () => {
                         ? <Profile />
                         : <Redirect to={{ pathname: '/login' }}/> }
                     />
+                    <Route path="/ask-question" component={AddQuestion} />
                 </Switch>
             </div>
         </Router>
