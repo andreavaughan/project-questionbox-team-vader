@@ -8,18 +8,18 @@ export const questions = [
                 answer: "because it is",
                 author: "username2",
                 created_date: "2012-03-10T06:54:45.213Z",
-                answer_accepted: false,
-                bookmarked: false
+                accepted: false,
+                bookmarked: null
             },
             answer2: {
                 answer: "It has to do with how water vapor reflects the light",
                 author: "username3",
                 created_date: "2012-03-11T06:54:45.213Z",
-                answer_accepted: true,
+                accepted: true,
                 bookmarked: true
             }
         },
-        bookmarked: false
+        bookmark: false
     }, 
     {
         question: "How long is the average year?",
