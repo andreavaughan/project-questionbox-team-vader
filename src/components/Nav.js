@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/nav.css'
 
-export const Nav = ({auth}) => {
+export const Nav = ({ token }) => {
     return (
         <>
             <nav className="navbar navbar-light bg-light">
@@ -30,7 +30,7 @@ export const Nav = ({auth}) => {
                                 </button>
                             </div>
                         </form>
-                        { auth 
+                        { token 
                             ? <div>
                                 <button type="button" className="btn btn-outline-dark">Logout</button>
                             </div>

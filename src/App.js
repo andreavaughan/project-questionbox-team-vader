@@ -16,7 +16,7 @@ export const App = () => {
     return (
         <Router>
             <div className="app">
-                <Nav auth={auth} />
+                <Nav token={auth} />
                 <Switch>
                     <Route exact path="/" component={() => <Questions questions={questions} />} />
                     <Route path="/login" component={() => <Login setAuth={setAuth} />} />

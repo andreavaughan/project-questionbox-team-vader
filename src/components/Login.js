@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import '../styles/login.css'
 
 export const Login = ({ setAuth }) => {
     const [ username, setUsername ] = useState('')
     const [ password, setPassword ] = useState('')
+    const history = useHistory()
 
 
     const handleChange = (inputType, event) => {
@@ -18,7 +20,7 @@ export const Login = ({ setAuth }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        axios.post('https://questionbox1.herokuapp.com/auth/token/login/',
+        axios.post(`https://questionbox1.herokuapp.com/auth/token/login/`,
             {
                 username: username,
                 password: password
@@ -27,6 +29,7 @@ export const Login = ({ setAuth }) => {
                 console.log(response)
                 if (response.data.auth_token) {
                     setAuth(response.data.auth_token)
+                    history.push('/')
                 }
             })
     }
