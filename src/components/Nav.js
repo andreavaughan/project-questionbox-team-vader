@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/nav.css'
 
-export const Nav = ({ token }) => {
+export const Nav = ({ token, clearStorage }) => {
     return (
         <>
             <nav className="navbar navbar-light bg-light">
@@ -11,13 +11,16 @@ export const Nav = ({ token }) => {
                         <Link to="/">
                             <p className="navbar-brand">QBox</p>
                         </Link>
-                        <ul className="navbar-nav">
-                            <Link to="/profile">
-                                <li className="nav-item nav-link active">
-                                    Profile
-                                </li>
-                            </Link>
-                        </ul>
+                        { token 
+                            ? <ul className="navbar-nav">
+                                <Link to="/profile">
+                                    <li className="nav-item nav-link active">
+                                        Profile
+                                    </li>
+                                </Link>
+                            </ul>  
+                            : null
+                        }
                     </div>
                     <div className="end-nav">
                         <form className="d-flex nav-search">
@@ -32,12 +35,12 @@ export const Nav = ({ token }) => {
                         </form>
                         { token 
                             ? <div>
-                                <button type="button" className="btn btn-outline-dark">Logout</button>
+                                <button type="button" className="btn btn-outline-dark" onClick={() => clearStorage('token')} >Logout</button>
                             </div>
                             : <div>
                                 <button type="button" className="btn btn-dark">Sign up</button>
                                 <Link to="/login">
-                                    <button type="button" className="btn btn-light">Log in</button>
+                                    <button type="button" className="btn btn-light">Login</button>
                                 </Link>
                             </div>
                         }
