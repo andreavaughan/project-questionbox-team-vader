@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { questions as data } from './test-data'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { Nav } from './components/Nav'
 import { Questions } from './components/Questions'
 import { Login } from './components/Login'
@@ -9,15 +9,21 @@ import { Profile } from './components/Profile'
 
 export const App = () => {
     const [questions] = useState(data)
+    const [ auth, setAuth ] = useState('')
+
+    useEffect(() => console.log(auth), [auth])
 
     return (
         <Router>
             <div className="app">
-                <Nav />
+                <Nav auth={auth} />
                 <Switch>
                     <Route exact path="/" component={() => <Questions questions={questions} />} />
-                    <Route path="/profile" component={Profile} />
-                    <Route path="/login" component={Login} />
+                    <Route path="/login" component={() => <Login setAuth={setAuth} />} />
+                    <Route path ="/profile" render={() => auth 
+                        ? <Profile />
+                        : <Redirect to={{ pathname: '/login' }}/> }
+                    />
                 </Switch>
             </div>
         </Router>

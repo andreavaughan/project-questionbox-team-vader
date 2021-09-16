@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import '../styles/login.css'
 
-export const Login = () => {
+export const Login = ({ setAuth }) => {
     const [ username, setUsername ] = useState('')
     const [ password, setPassword ] = useState('')
-    const [ auth, setAuth ] = useState('')
+
 
     const handleChange = (inputType, event) => {
         if (inputType === 'username'){
@@ -30,9 +30,6 @@ export const Login = () => {
                 }
             })
     }
-
-    console.log(auth)
-
 
     return (
         <div>

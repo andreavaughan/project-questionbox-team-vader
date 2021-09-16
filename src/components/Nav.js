@@ -2,13 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/nav.css'
 
-export const Nav = () => {
+export const Nav = ({auth}) => {
     return (
         <>
             <nav className="navbar navbar-light bg-light">
                 <div className="container-fluid">
                     <div className="main-nav">
-                        <a href="/" className="navbar-brand">QBox</a>
+                        <Link to="/">
+                            <p className="navbar-brand">QBox</p>
+                        </Link>
                         <ul className="navbar-nav">
                             <Link to="/profile">
                                 <li className="nav-item nav-link active">
@@ -28,12 +30,17 @@ export const Nav = () => {
                                 </button>
                             </div>
                         </form>
-                        <div>
-                            <button type="button" className="btn btn-dark">Sign up</button>
-                            <Link to="/login">
-                                <button type="button" className="btn btn-light">Log in</button>
-                            </Link>
-                        </div>
+                        { auth 
+                            ? <div>
+                                <button type="button" className="btn btn-outline-dark">Logout</button>
+                            </div>
+                            : <div>
+                                <button type="button" className="btn btn-dark">Sign up</button>
+                                <Link to="/login">
+                                    <button type="button" className="btn btn-light">Log in</button>
+                                </Link>
+                            </div>
+                        }
                     </div>
                 </div>
             </nav>
