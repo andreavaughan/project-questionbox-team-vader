@@ -3,16 +3,19 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import '../styles/questions.css'
 
-export const Questions = ({ token }) => {
-    const [ questions, setQuestions ] = useState(null)
+export const Questions = ({ token, isLoading, setIsLoading }) => {
+    const [ questions, setQuestions ] = useState([])
 
     useEffect(() => {
         axios
             .get(`https://questionbox1.herokuapp.com/api/questions/`)
-            .then((response) =>  console.log(response))
-    })
+            .then((response) =>  setQuestions(response.data))
+            setIsLoading(false)
+    }, [setIsLoading])
 
-    return (
+    return isLoading ?
+        'isLoading' :
+        (         
         <>
             <div className="home-header">
                 { token
@@ -22,8 +25,9 @@ export const Questions = ({ token }) => {
                     : <h2>Welcome to questionbox!</h2>
                 }
             </div>
-            {/* <div className="q-body">
-                { questions.map((question, idx) => (
+            <div className="q-body">
+                { questions && questions.map((question, idx) => {
+                    return (
                     <div className="card" key={idx}>
                         <div className="card-body">
                             <blockquote className="blockquote">
@@ -37,9 +41,9 @@ export const Questions = ({ token }) => {
                                 View answers
                             </button>
                         </div>
-                    </div>
-                ))}
-            </div> */}
+                    </div>)
+                })}
+            </div>
         </>
     );
 }
