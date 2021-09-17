@@ -1,11 +1,21 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import '../styles/questions.css'
 
-export const Questions = ({ questions, token }) => {
-    console.log(questions)
-    
-    return (
+export const Questions = ({ token, isLoading, setIsLoading }) => {
+    const [ questions, setQuestions ] = useState([])
+
+    useEffect(() => {
+        axios
+            .get(`https://questionbox1.herokuapp.com/api/questions/`)
+            .then((response) =>  setQuestions(response.data))
+            setIsLoading(false)
+    }, [setIsLoading])
+
+    return isLoading ?
+        'isLoading' :
+        (         
         <>
             <div className="home-header">
                 { token
@@ -16,7 +26,8 @@ export const Questions = ({ questions, token }) => {
                 }
             </div>
             <div className="q-body">
-                { questions.map((question, idx) => (
+                { questions && questions.map((question, idx) => {
+                    return (
                     <div className="card" key={idx}>
                         <div className="card-body">
                             <blockquote className="blockquote">
@@ -30,8 +41,8 @@ export const Questions = ({ questions, token }) => {
                                 View answers
                             </button>
                         </div>
-                    </div>
-                ))}
+                    </div>)
+                })}
             </div>
         </>
     );
