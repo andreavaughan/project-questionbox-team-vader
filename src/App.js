@@ -11,7 +11,6 @@ import { AddQuestion } from './components/AddQuestion';
 
 
 export const App = () => {
-    const [questions] = useState(data)
     const [ auth, setAuth, {removeItem} ] = useLocalStorageState('token', '')
 
     useEffect(() => console.log(auth), [auth])
@@ -21,7 +20,7 @@ export const App = () => {
             <div className="app">
                 <Nav token={auth} clearStorage={removeItem} />
                 <Switch>
-                    <Route exact path="/" component={() => <Questions questions={questions} token={auth} />} />
+                    <Route exact path="/" component={() => <Questions token={auth} />} />
                     <Route path="/login" component={() => <Login setAuth={setAuth} />} />
                     <Route path ="/profile" render={() => auth 
                         ? <Profile />
