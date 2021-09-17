@@ -23,7 +23,7 @@ export const App = () => {
                     <Route exact path="/" component={() => <Questions token={auth} />} />
                     <Route path="/login" component={() => <Login setAuth={setAuth} />} />
                     <Route path ="/profile" render={() => auth 
-                        ? <Profile />
+                        ? <Profile token={auth} />
                         : <Redirect to={{ pathname: '/login' }}/> }
                     />
                     <Route path="/ask-question" component={AddQuestion} />
