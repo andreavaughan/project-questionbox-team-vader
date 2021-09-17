@@ -20,7 +20,7 @@ export const Login = ({ setAuth }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        axios.post(`https://questionbox1.herokuapp.com/auth/token/login/`,
+        axios.post('https://questionbox1.herokuapp.com/auth/token/login/',
             {
                 username: username,
                 password: password
