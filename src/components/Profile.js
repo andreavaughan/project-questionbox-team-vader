@@ -5,12 +5,23 @@ export const Profile = ({ token }) => {
     const [ user, setUser ] = useState('')
     
     useEffect(() => {
+        let isMounted = true
+
         axios.get('https://questionbox1.herokuapp.com/auth/users/me/', {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `token ${token}`
             }
-        }).then((response) => setUser(response.data))
+        }).then((response) => {
+            if (isMounted) {
+                setUser(response.data)
+            }
+        })
+
+        return () => {
+            isMounted = false
+        }
+        
     }, [setUser, token])
     
 

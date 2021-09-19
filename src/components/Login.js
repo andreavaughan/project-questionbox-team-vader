@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
 import '../styles/login.css'
 
@@ -35,7 +35,7 @@ export const Login = ({ setAuth }) => {
     }
 
     return (
-        <div>
+        <>
             <form className='form login-form' onSubmit={handleSubmit}>
                 <label className="label">Username</label>
                 <input 
@@ -53,6 +53,9 @@ export const Login = ({ setAuth }) => {
                 />
                 <button className="btn btn-secondary" type="submit">Login</button>
             </form>
-        </div>
+            <div>
+                <p>Don't have an account? <Link to="/register">Register here</Link>.</p>
+            </div>
+        </>
     );
 }

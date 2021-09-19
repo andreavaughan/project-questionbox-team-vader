@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 export const Register = () => {
@@ -30,7 +30,7 @@ export const Register = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        axios.post('https://questionbox1.herokuapp.com/api/questions/',
+        axios.post('https://questionbox1.herokuapp.com/auth/users/',
             {
                 "first name": firstName,
                 "last name": lastName,
@@ -43,6 +43,8 @@ export const Register = () => {
                 console.log(response.status)
                 if (response.status === 201) {
                     console.log('user created!')
+                } else {
+                    console.log('there was an error, please try again')
                 }
             })
     }
@@ -67,7 +69,7 @@ export const Register = () => {
                 <label className="label">Email</label>
                 <input 
                     className="input form-control"
-                    type="text"
+                    type="email"
                     value={email}
                     onChange={(event) => handleChange('email', event)}
                 />
@@ -81,13 +83,16 @@ export const Register = () => {
                 <label className="label">Password</label>
                 <input 
                     className="input form-control"
-                    type="text"
+                    type="password"
                     value={password}
                     onChange={(event) => handleChange('password', event)}
                 />
                 <button type="submit" className="btn btn-secondary">Register</button>
                 <button className="btn btn-light">Cancel</button>
             </form>
+            <div>
+                <p>Already have an account? <Link to="/login" >Login here</Link>.</p>
+            </div>
         </>
     );
 }
