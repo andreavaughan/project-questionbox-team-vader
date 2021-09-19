@@ -52,9 +52,14 @@ export const Questions = ({ token, isLoading, setIsLoading }) => {
                         <div className="card-footer text-muted q-detail">
                             <p>Added: {question.created_date}</p>
                             <p>Submitted by: {question.author}</p>
-                            <button className="btn btn-light">
-                                View answers
-                            </button>
+                            { token ?
+                                <Link to="/question-detail">
+                                    <button className="btn btn-light">
+                                        View answers
+                                    </button>
+                                </Link> :
+                                null
+                            }
                         </div>
                     </div>)
                 })}

@@ -7,6 +7,7 @@ import { Login } from './components/Login'
 import { Profile } from './components/Profile'
 import { AddQuestion } from './components/AddQuestion'
 import { Register } from './components/Register'
+import { QuestionDetail } from './components/QuestionDetail';
 
 
 
@@ -30,6 +31,7 @@ export const App = () => {
                     />
                     <Route path="/ask-question" component={AddQuestion} />
                     <Route path="/register" component={Register} />
+                    <Route path="/question-detail" component={QuestionDetail} />
                 </Switch>
             </div>
         </Router>
