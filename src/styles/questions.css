@@ -9,3 +9,9 @@
 .card {
   margin: 1em;
 }
+
+.q-detail {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}

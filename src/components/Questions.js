@@ -17,7 +17,7 @@ export const Questions = ({ token, isLoading, setIsLoading }) => {
                     setIsLoading(false)
                 }
             })
-            
+
         return () => {
             isMounted = false
         }
@@ -25,7 +25,10 @@ export const Questions = ({ token, isLoading, setIsLoading }) => {
     }, [setIsLoading])
 
     return isLoading ?
-        'isLoading' :
+        <>
+            <strong>Loading...</strong>
+            <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+        </> :
         (         
         <>
             <div className="home-header">
@@ -44,10 +47,11 @@ export const Questions = ({ token, isLoading, setIsLoading }) => {
                             <blockquote className="blockquote">
                                 <p>{question.question}</p>
                             </blockquote>
+                            <p>{question.details}</p>
                         </div>
-                        <div className="card-footer text-muted">
-                            <p>{question.created_date}</p>
-                            <p>{question.author}</p>
+                        <div className="card-footer text-muted q-detail">
+                            <p>Added: {question.created_date}</p>
+                            <p>Submitted by: {question.author}</p>
                             <button className="btn btn-light">
                                 View answers
                             </button>
