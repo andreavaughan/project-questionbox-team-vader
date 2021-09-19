@@ -11,8 +11,11 @@ export const Profile = ({ token }) => {
                 'Authorization': `token ${token}`
             }
         }).then((response) => setUser(response.data))
-    })
+    }, [setUser, token])
     
+
+    console.log(user)
+
     return (
         <div>
             <h1>Profile</h1>

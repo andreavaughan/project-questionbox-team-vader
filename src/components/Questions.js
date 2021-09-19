@@ -7,10 +7,21 @@ export const Questions = ({ token, isLoading, setIsLoading }) => {
     const [ questions, setQuestions ] = useState([])
 
     useEffect(() => {
+        let isMounted = true
+
         axios
-            .get(`https://questionbox1.herokuapp.com/api/questions/`)
-            .then((response) =>  setQuestions(response.data))
-            setIsLoading(false)
+            .get('https://questionbox1.herokuapp.com/api/questions/')
+            .then((response) => {
+                if (isMounted) {
+                    setQuestions(response.data)
+                    setIsLoading(false)
+                }
+            })
+            
+        return () => {
+            isMounted = false
+        }
+
     }, [setIsLoading])
 
     return isLoading ?
