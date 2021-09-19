@@ -5,7 +5,8 @@ import { Nav } from './components/Nav'
 import { Questions } from './components/Questions'
 import { Login } from './components/Login'
 import { Profile } from './components/Profile'
-import { AddQuestion } from './components/AddQuestion';
+import { AddQuestion } from './components/AddQuestion'
+import { Register } from './components/Register'
 
 
 
@@ -28,6 +29,7 @@ export const App = () => {
                         : <Redirect to={{ pathname: '/login' }}/> }
                     />
                     <Route path="/ask-question" component={AddQuestion} />
+                    <Route path="/register" component={Register} />
                 </Switch>
             </div>
         </Router>

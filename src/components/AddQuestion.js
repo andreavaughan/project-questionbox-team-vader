@@ -4,7 +4,7 @@ import axios from 'axios'
 
 export const AddQuestion = () => {
     const [ newQuestion, setNewQuestion ] = useState('')
-    const [ qAuthor, setQAuthor ] = useState('')
+    // const [ qAuthor, setQAuthor ] = useState('')
     const history = useHistory()
     
     const handleChange = (inputType, event) => {
@@ -18,7 +18,7 @@ export const AddQuestion = () => {
         axios.post('https://questionbox1.herokuapp.com/api/questions/',
             {
                 question: newQuestion,
-                author: qAuthor
+                // author: qAuthor
             })
             .then(response => {
                 console.log(response)

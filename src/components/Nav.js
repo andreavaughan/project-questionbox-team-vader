@@ -38,7 +38,9 @@ export const Nav = ({ token, clearStorage }) => {
                                 <button type="button" className="btn btn-outline-dark" onClick={() => clearStorage('token')} >Logout</button>
                             </div>
                             : <div>
-                                <button type="button" className="btn btn-dark">Sign up</button>
+                                <Link to="/register">
+                                    <button type="button" className="btn btn-dark">Sign up</button>
+                                </Link>
                                 <Link to="/login">
                                     <button type="button" className="btn btn-light">Login</button>
                                 </Link>
