@@ -32,8 +32,8 @@ export const Register = () => {
         event.preventDefault()
         axios.post('https://questionbox1.herokuapp.com/auth/users/',
             {
-                "first name": firstName,
-                "last name": lastName,
+                "first_name": firstName,
+                "last_name": lastName,
                 "email": email,
                 "username": username,
                 "password": password
