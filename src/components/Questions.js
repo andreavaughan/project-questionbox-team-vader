@@ -77,7 +77,8 @@ export const Questions = ({ token, isLoading, setIsLoading, setQuestionID }) => 
                             <p>Submitted by: {question.author}</p>
                             <Link to="/question-detail">
                                 <button className="btn btn-outline-secondary" onClick={() => setQuestionID(question.pk)}>
-                                    View {question.answers.length} answers
+                                    View answers
+                                    {/* View {question.answers.length} answers */}
                                 </button>
                             </Link>
                         </div>

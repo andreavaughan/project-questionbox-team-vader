@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
 
-export const Register = () => {
+export const Register = ({ setAuth }) => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const history = useHistory()
 
     
     const handleChange = (inputType, event) => {
@@ -43,6 +44,15 @@ export const Register = () => {
                 console.log(response.status)
                 if (response.status === 201) {
                     console.log('user created!')
+                    return axios.post('https://questionbox1.herokuapp.com/auth/token/login/', {
+                        username: username,
+                        password: password
+                    }).then((data) => {
+                        if (data && data.data.auth_token) {
+                            setAuth(data.data.auth_token)
+                            history.push('/')
+                        }
+                    })
                 } else {
                     console.log('there was an error, please try again')
                 }

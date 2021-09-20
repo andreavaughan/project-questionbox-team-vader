@@ -32,7 +32,7 @@ export const App = () => {
                         : <Redirect to={{ pathname: '/login' }}/> }
                     />
                     <Route path="/ask-question" component={AddQuestion} />
-                    <Route path="/register" component={Register} />
+                    <Route path="/register" component={() => <Register setAuth={setAuth} />} />
                     <Route path="/question-detail" component={() => <QuestionDetail token={auth} questionID={questionID} isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 </Switch>
             </div>
