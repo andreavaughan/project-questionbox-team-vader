@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Link, useHistory } from 'react-router-dom'
 import { questions as questionDetail } from '../test-data'
 
-export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading }) => {
+export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, userId }) => {
     const [ questionDetail, setQuestionDetail ] = useState([])
 
     useEffect(() => {
@@ -59,10 +59,14 @@ export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading }) =
                             <div className="card-footer text-muted q-detail">
                                 <p>Added: {questionDetail.created_date}</p>
                                 <p>Submitted by: {questionDetail.author}</p>
-                                { token ? 
-                                    <button className="btn btn-dark" id={questionDetail.pk} onClick={(event) => handleDelete(event)}>Delete</button> :
-                                    null
-                                }
+                                { userId === questionDetail.id ? 
+                                    <button className="btn btn-dark" id={questionDetail.pk} 
+                                    onClick={(event) => handleDelete(event)}> Delete
+                                    </button> :
+                                    <button className="btn btn-dark" id={questionDetail.pk} 
+                                    onClick={(event) => handleDelete(event)} disabled> Delete
+                                    </button>
+                                }                                             
                             </div>
                         </div>
                     </div>

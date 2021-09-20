@@ -1,28 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-export const Profile = ({ token }) => {
-    const [ user, setUser ] = useState('')
+export const Profile = ({ token, user }) => {
+    
     
     useEffect(() => {
-        let isMounted = true
-
-        axios.get('https://questionbox1.herokuapp.com/auth/users/me/', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `token ${token}`
-            }
-        }).then((response) => {
-            if (isMounted) {
-                setUser(response.data)
-            }
-        })
-
-        return () => {
-            isMounted = false
-        }
         
-    }, [setUser, token])
+        
+    }, [token])
     
 
     console.log(user)
