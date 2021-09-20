@@ -4,31 +4,38 @@ import { Link, useHistory } from 'react-router-dom'
 import { questions as questionDetail } from '../test-data'
 
 export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading }) => {
-//     const [ questionDetail, setQuestionDetail ] = useState([])
+    const [ questionDetail, setQuestionDetail ] = useState([])
 
-//     useEffect(() => {
-//         let isMounted = true
-//         isLoading = true
+    useEffect(() => {
+        let isMounted = true
+        isLoading = true
 
-//         axios
-//             .get(`https://questionbox1.herokuapp.com/api/questions/${questionID}/detail/`)
-//             .then((response) => {
-//                 if (isMounted) {
-//                     setQuestionDetail(response.data)
-//                     setIsLoading(false)
-//                 }
-//             })
+        axios
+            .get(`https://questionbox1.herokuapp.com/api/questions/${questionID}/detail/`)
+            .then((response) => {
+                if (isMounted) {
+                    setQuestionDetail(response.data)
+                    setIsLoading(false)
+                }
+            })
 
-//         return () => {
-//             isMounted = false
-//         }
+        return () => {
+            isMounted = false
+        }
 
-//     }, [setIsLoading])
+    }, [setIsLoading])
     
     // console.log(typeof(questionDetail.answers))
 
-    const handleDelete = (question) => {
-         
+    const handleDelete = (event) => {
+        console.log(event.target.id)
+        
+        return axios.delete(`https://questionbox1.herokuapp.com/api/questions/${event.target.id}`, {
+            headers: {
+                Authorization: `token ${token}`
+            }
+        })
+        .then((res) => console.log(res))
     }
 
     return (
@@ -53,7 +60,7 @@ export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading }) =
                                 <p>Added: {questionDetail.created_date}</p>
                                 <p>Submitted by: {questionDetail.author}</p>
                                 { token ? 
-                                    <button className="btn btn-dark" onClick={(event) => handleDelete(event, questionDetail.pk)}>Delete</button> :
+                                    <button className="btn btn-dark" id={questionDetail.pk} onClick={(event) => handleDelete(event)}>Delete</button> :
                                     null
                                 }
                             </div>
@@ -62,7 +69,7 @@ export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading }) =
                     <div>
                         <h2>Answers</h2>
                         <div className="a-body">
-                            {/* { questionDetail.map((question) => question.answers.map((answer, idx) => {
+                            { questionDetail.map((question) => question.answers.map((answer, idx) => {
                                 <div className="card" key={idx}>
                                     <div className="card-body">
                                         <blockquote className="blockquote">
@@ -74,7 +81,7 @@ export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading }) =
                                         <p>Submitted by: {answer.author}</p>
                                     </div>
                                 </div>
-                            }))} */}
+                            }))}
                         </div>
                     </div>
                     <div>
