@@ -8,7 +8,8 @@ import { Login } from './components/Login'
 import { Profile } from './components/Profile'
 import { AddQuestion } from './components/AddQuestion'
 import { Register } from './components/Register'
-import { QuestionDetail } from './components/QuestionDetail';
+import { QuestionDetail } from './components/QuestionDetail'
+import { AddAnswer } from './components/AddAnswer';
 
 
 
@@ -61,6 +62,7 @@ export const App = () => {
                     <Route path="/ask-question" component={AddQuestion} />
                     <Route path="/register" component={() => <Register setAuth={setAuth} />} />
                     <Route path="/question-detail" component={() => <QuestionDetail token={auth} questionID={questionID} isLoading={isLoading} setIsLoading={setIsLoading} username={username}/>} />
+                    <Route path="/add-answer" component={AddAnswer} />
                 </Switch>
             </div>
         </Router>

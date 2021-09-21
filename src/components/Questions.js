@@ -78,7 +78,6 @@ export const Questions = ({ token, isLoading, setIsLoading, setQuestionID }) => 
                             <Link to="/question-detail">
                                 <button className="btn btn-outline-secondary" onClick={() => setQuestionID(question.pk)}>
                                     View answers
-                                    {/* View {question.answers.length} answers */}
                                 </button>
                             </Link>
                         </div>

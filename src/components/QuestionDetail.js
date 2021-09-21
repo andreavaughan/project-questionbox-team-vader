@@ -5,6 +5,7 @@ import { Answer } from './Answer'
 
 export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, username }) => {
     const [ questionDetail, setQuestionDetail ] = useState([])
+    const [ answers, setAnswers ] = useState({})
     const history = useHistory()
 
     useEffect(() => {
@@ -19,7 +20,9 @@ export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, use
             })
             .then((response) => {
                 if (isMounted) {
+                    console.log(response.data.answers)
                     setQuestionDetail(response.data)
+                    setAnswers(response.data.answers)
                     setIsLoading(false)
                 }
             })
@@ -47,6 +50,8 @@ export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, use
             }
         })
     }
+
+    console.log(typeof(questionDetail.answers))
 
     return isLoading ?
         <>
@@ -80,11 +85,27 @@ export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, use
                         </div>
                     </div>
                     <div>
-                        <h2>Answers</h2>
-                        <Answer token={token}/>
+                        <div className="a-body">
+                            { questionDetail.answers && (
+                                questionDetail.answers.forEach((answer, idx) => {
+                                    <div className="card" key={idx}>
+                                        <div className="card-body">
+                                            <blockquote className="blockquote">
+                                                <p>{answer.answer}</p>
+                                            </blockquote>
+                                        </div>
+                                        <div className="card-footer text-muted q-detail">
+                                            <p>Added: {answer.created_date}</p>
+                                            <p>Submitted by: {answer.author}</p>
+                                        </div>
+                                    </div>
+                                }))}
+                        </div>
                     </div>
                     <div>
-                        <button className="btn btn-secondary">+ Add Answer</button>
+                        <Link to="/add-answer">
+                            <button className="btn btn-secondary">+ Add Answer</button>
+                        </Link>
                     </div>
                 </>
             )}
