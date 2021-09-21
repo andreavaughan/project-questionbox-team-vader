@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link, useHistory } from 'react-router-dom'
-import { questions as questionDetail } from '../test-data'
 
-export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, userId }) => {
+export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, username }) => {
     const [ questionDetail, setQuestionDetail ] = useState([])
+    const history = useHistory()
 
     useEffect(() => {
         let isMounted = true
         isLoading = true
 
         axios
-            .get(`https://questionbox1.herokuapp.com/api/questions/${questionID}/detail/`)
+            .get(`https://questionbox1.herokuapp.com/api/questions/${questionID}/`, {
+                headers: {
+                    Authorization: `token ${token}`
+                }
+            })
             .then((response) => {
                 if (isMounted) {
                     setQuestionDetail(response.data)
@@ -25,28 +29,32 @@ export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, use
 
     }, [setIsLoading])
     
-    // console.log(typeof(questionDetail.answers))
+    console.log(typeof(questionDetail.answers))
+    console.log(username)
+    console.log(questionDetail.author)
 
     const handleDelete = (event) => {
-        console.log(event.target.id)
         
-        return axios.delete(`https://questionbox1.herokuapp.com/api/questions/${event.target.id}`, {
+        return axios.delete(`https://questionbox1.herokuapp.com/api/questions/${event.target.id}/`, {
             headers: {
                 Authorization: `token ${token}`
             }
         })
-        .then((res) => console.log(res))
+        .then((response) => {
+            if (response.status === 204) {
+                history.push('/')
+            }
+        })
     }
 
-    return (
-    // isLoading ?
-    //     <>
-    //         <strong>Loading...</strong>
-    //         <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
-    //     </> :
-    (
+    return isLoading ?
         <>
-            {/* { questionDetail && ( */}
+            <strong>Loading...</strong>
+            <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+        </> :
+        (
+        <>
+            { questionDetail && (
                 <>
                     <div className="q-body">
                         <div className="card">
@@ -59,7 +67,7 @@ export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, use
                             <div className="card-footer text-muted q-detail">
                                 <p>Added: {questionDetail.created_date}</p>
                                 <p>Submitted by: {questionDetail.author}</p>
-                                { userId === questionDetail.id ? 
+                                { username === questionDetail.author ? 
                                     <button className="btn btn-dark" id={questionDetail.pk} 
                                     onClick={(event) => handleDelete(event)}> Delete
                                     </button> :
@@ -73,7 +81,7 @@ export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, use
                     <div>
                         <h2>Answers</h2>
                         <div className="a-body">
-                            { questionDetail.map((question) => question.answers.map((answer, idx) => {
+                            {/* { questionDetail.answers.map((answer, idx) => {
                                 <div className="card" key={idx}>
                                     <div className="card-body">
                                         <blockquote className="blockquote">
@@ -85,15 +93,15 @@ export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, use
                                         <p>Submitted by: {answer.author}</p>
                                     </div>
                                 </div>
-                            }))}
+                            })} */}
                         </div>
                     </div>
                     <div>
                         <button className="btn btn-secondary">+ Add Answer</button>
                     </div>
                 </>
-            
+            )}
         </>
-    ))
+    )
 }
 

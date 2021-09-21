@@ -16,7 +16,7 @@ export const App = () => {
     const [ auth, setAuth, {removeItem} ] = useLocalStorageState('token', '')
     const [isLoading, setIsLoading] = useState(true)
     const [ questionID, setQuestionID ] = useLocalStorageState('questionID', '')
-    const [ userId, setUserId ] = useState()
+    const [ username, setUsername ] = useState()
     const [ user, setUser ] = useState({})
 
     useEffect(() => {
@@ -31,7 +31,7 @@ export const App = () => {
             }).then((response) => {
                 if (isMounted) {
                     setUser(response.data)
-                    setUserId(response.data.id)
+                    setUsername(response.data.username)
                 }
             })
         }
@@ -45,7 +45,7 @@ export const App = () => {
 
     console.log(auth)
     console.log(user)
-    console.log(userId)
+    console.log(username)
 
     return (
         <Router>
@@ -60,7 +60,7 @@ export const App = () => {
                     />
                     <Route path="/ask-question" component={AddQuestion} />
                     <Route path="/register" component={() => <Register setAuth={setAuth} />} />
-                    <Route path="/question-detail" component={() => <QuestionDetail token={auth} questionID={questionID} isLoading={isLoading} setIsLoading={setIsLoading} userId={userId}/>} />
+                    <Route path="/question-detail" component={() => <QuestionDetail token={auth} questionID={questionID} isLoading={isLoading} setIsLoading={setIsLoading} username={username}/>} />
                 </Switch>
             </div>
         </Router>
