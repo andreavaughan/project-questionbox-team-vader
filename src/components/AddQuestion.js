@@ -54,7 +54,7 @@ export const AddQuestion = () => {
                     onChange={(event) => handleChange('details', event)}
                 />
                 <button type="submit" className="btn btn-secondary">Submit question</button>
-                <button className="btn btn-light">Cancel</button>
+                <button className="btn btn-light" onClick={() => history.push('/')}>Cancel</button>
             </form>
         </>
     );

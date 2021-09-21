@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/nav.css'
 
-export const Nav = ({ token, clearStorage }) => {
+export const Nav = ({ token, clearStorage, username }) => {
     return (
         <>
             <nav className="navbar navbar-light bg-light">
@@ -34,7 +34,8 @@ export const Nav = ({ token, clearStorage }) => {
                             </div>
                         </form>
                         { token 
-                            ? <div>
+                            ? <div className="loggedin">
+                                <p>Hello, {username}!</p>
                                 <button type="button" className="btn btn-outline-dark" onClick={() => clearStorage('token')} >Logout</button>
                             </div>
                             : <div>

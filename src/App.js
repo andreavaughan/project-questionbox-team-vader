@@ -50,7 +50,7 @@ export const App = () => {
     return (
         <Router>
             <div className="app">
-                <Nav token={auth} clearStorage={removeItem} />
+                <Nav token={auth} clearStorage={removeItem} username={username} />
                 <Switch>
                     <Route exact path="/" component={() => <Questions isLoading={isLoading} setIsLoading={setIsLoading} token={auth} setQuestionID={setQuestionID}/>} />
                     <Route path="/login" component={() => <Login setAuth={setAuth} />} />

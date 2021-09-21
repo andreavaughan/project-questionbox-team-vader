@@ -11,3 +11,9 @@
 .nav-search {
   padding-right: 0.5em;
 }
+
+.loggedin {
+  display: flex;
+  flex-wrap: row nowrap;
+  margin: 0.5em;
+}
