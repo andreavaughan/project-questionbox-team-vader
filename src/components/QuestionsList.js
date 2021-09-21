@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import '../styles/questions.css'
 
-export const Questions = ({ token, isLoading, setIsLoading, setQuestionID }) => {
+export const QuestionsList = ({ token, isLoading, setIsLoading, setQuestionID }) => {
     const [ questions, setQuestions ] = useState([])
 
     useEffect(() => {

@@ -7,6 +7,7 @@ export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, use
     const [ questionDetail, setQuestionDetail ] = useState([])
     const [ answers, setAnswers ] = useState({})
     const history = useHistory()
+    
 
     useEffect(() => {
         let isMounted = true
@@ -51,7 +52,7 @@ export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, use
         })
     }
 
-    console.log(typeof(questionDetail.answers))
+    console.log(questionDetail.answers && questionDetail.answers.map((a) => console.log(a.pk)))
 
     return isLoading ?
         <>
@@ -86,9 +87,9 @@ export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, use
                     </div>
                     <div>
                         <div className="a-body">
-                            { questionDetail.answers && (
-                                questionDetail.answers.forEach((answer, idx) => {
-                                    <div className="card" key={idx}>
+                            { questionDetail.answers && 
+                                (questionDetail.answers.map((answer) => {
+                                    return <div className="card" key={answer.pk}>
                                         <div className="card-body">
                                             <blockquote className="blockquote">
                                                 <p>{answer.answer}</p>
@@ -99,7 +100,8 @@ export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, use
                                             <p>Submitted by: {answer.author}</p>
                                         </div>
                                     </div>
-                                }))}
+                                }))
+                                }
                         </div>
                     </div>
                     <div>

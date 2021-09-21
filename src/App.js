@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import useLocalStorageState from 'use-local-storage-state';
 import axios from 'axios'
 import { Nav } from './components/Nav'
-import { Questions } from './components/Questions'
+import { QuestionsList } from './components/QuestionsList'
 import { Login } from './components/Login'
 import { Profile } from './components/Profile'
 import { AddQuestion } from './components/AddQuestion'
@@ -53,7 +53,7 @@ export const App = () => {
             <div className="app">
                 <Nav token={auth} clearStorage={removeItem} username={username} />
                 <Switch>
-                    <Route exact path="/" component={() => <Questions isLoading={isLoading} setIsLoading={setIsLoading} token={auth} setQuestionID={setQuestionID}/>} />
+                    <Route exact path="/" component={() => <QuestionsList isLoading={isLoading} setIsLoading={setIsLoading} token={auth} setQuestionID={setQuestionID}/>} />
                     <Route path="/login" component={() => <Login setAuth={setAuth} />} />
                     <Route path ="/profile" render={() => auth 
                         ? <Profile token={auth} user={user} />
