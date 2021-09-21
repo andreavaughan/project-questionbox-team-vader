@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
+import { Question } from './Question'
 import '../styles/questions.css'
 
 export const QuestionsList = ({ token, isLoading, setIsLoading, setQuestionID }) => {
@@ -65,23 +66,8 @@ export const QuestionsList = ({ token, isLoading, setIsLoading, setQuestionID })
             <div className="q-body">
                 { questions && questions.map((question, idx) => {
                     return (
-                    <div className="card" key={idx}>
-                        <div className="card-body">
-                            <blockquote className="blockquote">
-                                <p>{question.question}</p>
-                            </blockquote>
-                            <p>{question.details}</p>
-                        </div>
-                        <div className="card-footer text-muted q-detail">
-                            <p>Added: {question.created_date}</p>
-                            <p>Submitted by: {question.author}</p>
-                            <Link to="/question-detail">
-                                <button className="btn btn-outline-secondary" onClick={() => setQuestionID(question.pk)}>
-                                    View answers
-                                </button>
-                            </Link>
-                        </div>
-                    </div>)
+                        <Question key={idx} question={question} setQuestionID={setQuestionID} />
+                    )
                 })}
             </div>
         </>

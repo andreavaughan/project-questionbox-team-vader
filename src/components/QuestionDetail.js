@@ -5,7 +5,6 @@ import { Answer } from './Answer'
 
 export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, username }) => {
     const [ questionDetail, setQuestionDetail ] = useState([])
-    const [ answers, setAnswers ] = useState({})
     const history = useHistory()
     
 
@@ -23,7 +22,6 @@ export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, use
                 if (isMounted) {
                     console.log(response.data.answers)
                     setQuestionDetail(response.data)
-                    setAnswers(response.data.answers)
                     setIsLoading(false)
                 }
             })
