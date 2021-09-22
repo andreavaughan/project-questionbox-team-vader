@@ -15,5 +15,5 @@
 .loggedin {
   display: flex;
   flex-wrap: row nowrap;
-  margin: 0.5em;
+  margin-right: 0.5em;
 }

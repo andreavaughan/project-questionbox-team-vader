@@ -1,3 +1,4 @@
+import { createPopper } from '@popperjs/core';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import ReactDom from 'react-dom'
