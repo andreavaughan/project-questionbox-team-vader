@@ -50,13 +50,6 @@ export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, use
         })
     }
 
-    let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    // let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    //     return new bootstrap.Tooltip(tooltipTriggerEl)
-        // })  
-
-    console.log(questionDetail.answers && questionDetail.answers.map((a) => console.log(a.pk)))
-
     return isLoading ?
         <>
             <strong>Loading...</strong>

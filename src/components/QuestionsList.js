@@ -66,7 +66,7 @@ export const QuestionsList = ({ token, isLoading, setIsLoading, setQuestionID })
             <div className="q-body">
                 { questions && questions.map((question, idx) => {
                     return (
-                        <Question key={idx} question={question} setQuestionID={setQuestionID} />
+                        <Question key={idx} question={question} setQuestionID={setQuestionID} token={token} />
                     )
                 })}
             </div>
