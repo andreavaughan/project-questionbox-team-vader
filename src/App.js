@@ -58,7 +58,7 @@ export const App = () => {
                     <Route path="/ask-question" component={AddQuestion} />
                     <Route path="/register" component={() => <Register setAuth={setAuth} />} />
                     <Route path="/question-detail" component={() => <QuestionDetail token={auth} questionID={questionID} isLoading={isLoading} setIsLoading={setIsLoading} username={username}/>} />
-                    <Route path="/add-answer" component={AddAnswer} />
+                    <Route path="/add-answer" component={() => <AddAnswer token={auth} questionID={questionID} />} />
                 </Switch>
             </div>
         </Router>

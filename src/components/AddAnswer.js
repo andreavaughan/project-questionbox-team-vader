@@ -2,33 +2,34 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
-export const AddAnswer = () => {
+export const AddAnswer = ({ token, questionID }) => {
     const [ newAnswer, setNewAnswer ] = useState('')
-    const [ answerDetails, setAnswerDetails ] = useState('')
     const history = useHistory()
     
     const handleChange = (inputType, event) => {
         if (inputType === 'newAnswer'){
             setNewAnswer(event.target.value)
         }
-        if (inputType === 'answerDetails'){
-            setAnswerDetails(event.target.value)
-        }
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        axios.post('',
+        axios.post('https://questionbox1.herokuapp.com/api/answers/new/',
             {
                 "answer": newAnswer,
-                // "details": answerDetails
+                "question": questionID
+            },
+            {
+                headers: {
+                    Authorization: `token ${token}`
+                }
             })
             .then(response => {
                 console.log(response)
                 console.log(response.status)
                 if (response.status === 201) {
                     console.log('answer added!')
-                    history.push('') //change to redirect to question 
+                    history.push('/question-detail')  
                 }
             })
     }
@@ -37,20 +38,13 @@ export const AddAnswer = () => {
         <>
             <form className='form question-form' onSubmit={handleSubmit}>
                 <label className="label">Add your answer:</label>
-                <input 
+                <textarea 
                     className="input form-control"
                     type="text"
                     value={newAnswer}
                     onChange={(event) => handleChange('newAnswer', event)}
                 />
-                <label className="label">Details:</label>
-                <textarea 
-                    className="input form-control"
-                    type="text"
-                    value={answerDetails}
-                    onChange={(event) => handleChange('answerDetails', event)}
-                />
-                <button type="submit" className="btn btn-secondary">Submit question</button>
+                <button type="submit" className="btn btn-secondary">Submit answer</button>
                 <button className="btn btn-light" onClick={() => history.push('')}>Cancel</button>
             </form>
         </>

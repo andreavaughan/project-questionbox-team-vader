@@ -18,7 +18,7 @@ export const Profile = ({ token, user, isLoading, setIsLoading, setQuestionID })
             })
             .then((response) => {
                 if (isMounted) {
-                    setProfile(response.data)
+                    setProfile(response.data[0])
                     setIsLoading(false)
                 }
             })
@@ -43,22 +43,22 @@ export const Profile = ({ token, user, isLoading, setIsLoading, setQuestionID })
                 <>
                 <div className="header">
                     <h1>Profile</h1>
-                    <h3>{profile[0].username}'s contributions</h3>
+                    <h3>{profile.username}'s contributions</h3>
                     <div className="header-links">
                         <p>My Questions | My Answers | Bookmarked</p>
                     </div>
                 </div>
                 <div>
                     <div className="">
-                        { profile[0].questions && profile[0].questions.map((question, idx) => {
+                        { profile.questions && profile.questions.map((question, idx) => {
                             return (
                                 <Question key={idx} question={question} setQuestionID={setQuestionID} />
                             )
                         })}
                     </div>
                     <div className="a-body">
-                            { profile[0].answer && 
-                                (profile[0].answer.map((answer, idx) => {
+                            { profile.answer && 
+                                (profile.answer.map((answer, idx) => {
                                     return (
                                         <Answer key={idx} answer={answer}/>
                                     )
