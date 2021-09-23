@@ -54,7 +54,7 @@ export const Login = ({ setAuth }) => {
                 <button className="btn btn-secondary" type="submit">Login</button>
             </form>
             <div>
-                <p>Don't have an account? <Link to="/register">Register here</Link>.</p>
+                <p className="form-link">Don't have an account?<Link to="/register"> Register here</Link>.</p>
             </div>
         </>
     );

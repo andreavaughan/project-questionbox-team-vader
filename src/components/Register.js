@@ -101,7 +101,7 @@ export const Register = ({ setAuth }) => {
                 <button className="btn btn-light">Cancel</button>
             </form>
             <div>
-                <p>Already have an account? <Link to="/login" >Login here</Link>.</p>
+                <p className="form-link">Already have an account? <Link to="/login" >Login here</Link>.</p>
             </div>
         </>
     );

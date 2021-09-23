@@ -41,18 +41,20 @@ export const Profile = ({ token, user, isLoading, setIsLoading, setQuestionID })
                 <div className="header">
                     <h2>{profile.username}'s contributions</h2>
                     <div className="header-links">
-                        <h5>My Questions | My Answers </h5>
+                        <h5><a href="#my-questions">My Questions</a> | <a href="#my-answers">My Answers</a> </h5>
                     </div>
                 </div>
                 <div>
-                    <div className="">
+                    <div className="q-body" id="my-questions">
+                        <h4>Questions</h4>
                         { profile.questions && profile.questions.map((question, idx) => {
                             return (
                                 <Question token={token} key={idx} question={question} setQuestionID={setQuestionID} />
                             )
                         })}
                     </div>
-                    <div className="a-body">
+                    <div className="a-body" id="my-answers">
+                            <h4>Answers</h4>
                             { profile.answer && 
                                 (profile.answer.map((answer, idx) => {
                                     return (

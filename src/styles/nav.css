@@ -2,9 +2,20 @@ nav {
   height: 5em;
 }
 
+a {
+  text-decoration: none;
+}
+
 nav p {
   margin-bottom: 0px;
   font-size: 1.2rem;
+}
+
+p.navbar-brand {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  padding-top: 7px;
 }
 
 .main-nav {
