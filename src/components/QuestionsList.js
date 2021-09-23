@@ -41,7 +41,7 @@ export const QuestionsList = ({ token, isLoading, setIsLoading, setQuestionID })
                             ? 
                             <>
                                 <Link to="/ask-question">
-                                    <button type="button" className="btn btn-secondary btn-lg">Ask a question</button>
+                                    <button type="button" className="btn btn-secondary btn-lg col-6">Ask a question</button>
                                 </Link>
                             </>
                             

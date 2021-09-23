@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import '../styles/add-question.css'
 
-export const AddQuestion = () => {
+export const AddQuestion = ({ token }) => {
     const [ newQuestionTitle, setNewQuestionTitle ] = useState('')
     const [ details, setDetails ] = useState('')
     // const [ qAuthor, setQAuthor ] = useState('')
@@ -25,6 +25,11 @@ export const AddQuestion = () => {
                 "question": newQuestionTitle,
                 "details": details,
                 // author: qAuthor
+            }, 
+            {
+                headers: {
+                    Authorization: `token ${token}`
+                }
             })
             .then(response => {
                 console.log(response)

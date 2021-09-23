@@ -55,7 +55,7 @@ export const App = () => {
                         ? <Profile token={auth} user={user} isLoading={isLoading} setIsLoading={setIsLoading} setQuestionID={setQuestionID}/>
                         : <Redirect to={{ pathname: '/login' }}/> }
                     />
-                    <Route path="/ask-question" component={AddQuestion} />
+                    <Route path="/ask-question" component={() => <AddQuestion token={auth} />} />
                     <Route path="/register" component={() => <Register setAuth={setAuth} />} />
                     <Route path="/question-detail" component={() => <QuestionDetail token={auth} questionID={questionID} isLoading={isLoading} setIsLoading={setIsLoading} username={username}/>} />
                     <Route path="/add-answer" component={() => <AddAnswer token={auth} questionID={questionID} />} />
