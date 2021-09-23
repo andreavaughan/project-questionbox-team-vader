@@ -13,9 +13,9 @@ export const AddQuestion = ({ token }) => {
         if (inputType === 'newQuestionTitle'){
             setNewQuestionTitle(event.target.value)
         }
-        if (inputType === 'details'){
-            setDetails(event.target.value)
-        }
+        // if (inputType === 'details'){
+        //     setDetails(event.target.value)
+        // }
     }
 
     const handleSubmit = (event) => {
@@ -23,8 +23,7 @@ export const AddQuestion = ({ token }) => {
         axios.post('https://questionbox1.herokuapp.com/api/questions/',
             {
                 "question": newQuestionTitle,
-                "details": details,
-                // author: qAuthor
+                // "details": details,
             }, 
             {
                 headers: {
@@ -51,13 +50,13 @@ export const AddQuestion = ({ token }) => {
                     value={newQuestionTitle}
                     onChange={(event) => handleChange('newQuestionTitle', event)}
                 />
-                <label className="label">Details:</label>
+                {/* <label className="label">Details:</label>
                 <textarea 
                     className="input form-control"
                     type="text"
                     value={details}
                     onChange={(event) => handleChange('details', event)}
-                />
+                /> */}
                 <button type="submit" className="btn btn-secondary">Submit question</button>
                 <button className="btn btn-light" onClick={() => history.push('/')}>Cancel</button>
             </form>

@@ -40,8 +40,6 @@ export const Register = ({ setAuth }) => {
                 "password": password
             })
             .then(response => {
-                console.log(response)
-                console.log(response.status)
                 if (response.status === 201) {
                     console.log('user created!')
                     return axios.post('https://questionbox1.herokuapp.com/auth/token/login/', {

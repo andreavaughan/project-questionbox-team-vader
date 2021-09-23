@@ -4,7 +4,7 @@ import { Question } from './Question'
 import { Answer } from './Answer'
 import '../styles/profile.css'
 
-export const Profile = ({ token, user, isLoading, setIsLoading, setQuestionID }) => {
+export const Profile = ({ token, isLoading, setIsLoading, setQuestionID }) => {
     const [ profile, setProfile ] = useState([])
     
     useEffect(() => {

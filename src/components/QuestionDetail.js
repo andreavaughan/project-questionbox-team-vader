@@ -6,10 +6,8 @@ import '../styles/question-detail.css'
 
 export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, username }) => {
     const [ questionDetail, setQuestionDetail ] = useState([])
-    const [bookmark, setBookmark] = useState(false)
     const history = useHistory()
     
-
     useEffect(() => {
         let isMounted = true
         isLoading = true
@@ -37,7 +35,7 @@ export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, use
 
     const handleDelete = (event) => {
         
-        return axios.delete(`https://questionbox1.herokuapp.com/api/questions/${event.target.id}/`, {
+        return axios.delete(`https://questionbox1.herokuapp.com/api/questions/${questionID}/`, {
             headers: {
                 Authorization: `token ${token}`
             }
@@ -48,6 +46,8 @@ export const QuestionDetail = ({ token, questionID, isLoading, setIsLoading, use
             }
         })
     }
+
+    
 
     return isLoading ?
         <>

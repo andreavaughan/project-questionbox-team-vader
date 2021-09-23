@@ -18,7 +18,6 @@ export const App = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [ questionID, setQuestionID ] = useLocalStorageState('questionID', '')
     const [ username, setUsername ] = useState()
-    const [ user, setUser ] = useState({})
 
     useEffect(() => {
         let isMounted = true
@@ -31,7 +30,6 @@ export const App = () => {
                 }
             }).then((response) => {
                 if (isMounted) {
-                    setUser(response.data)
                     setUsername(response.data.username)
                 }
             })
@@ -40,7 +38,6 @@ export const App = () => {
         return () => {
             isMounted = false
         }
-
         
     }, [auth])
 
@@ -52,7 +49,7 @@ export const App = () => {
                     <Route exact path="/" component={() => <QuestionsList isLoading={isLoading} setIsLoading={setIsLoading} token={auth} setQuestionID={setQuestionID}/>} />
                     <Route path="/login" component={() => <Login setAuth={setAuth} />} />
                     <Route path ="/profile" render={() => auth 
-                        ? <Profile token={auth} user={user} isLoading={isLoading} setIsLoading={setIsLoading} setQuestionID={setQuestionID}/>
+                        ? <Profile token={auth} isLoading={isLoading} setIsLoading={setIsLoading} setQuestionID={setQuestionID}/>
                         : <Redirect to={{ pathname: '/login' }}/> }
                     />
                     <Route path="/ask-question" component={() => <AddQuestion token={auth} />} />
