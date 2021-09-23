@@ -1,3 +1,11 @@
+nav {
+  height: 5em;
+}
+
+p {
+  margin-bottom: 0px;
+}
+
 .main-nav {
   display: flex;
   justify-content: flex-start;
@@ -5,7 +13,7 @@
 
 .end-nav {
   display: flex;
-  flex-wrap: row nowrap;
+  flex-flow: row nowrap;
 }
 
 .nav-search {
@@ -14,6 +22,12 @@
 
 .loggedin {
   display: flex;
-  flex-wrap: row nowrap;
-  margin-right: 0.5em;
+  flex-flow: row nowrap;
+}
+
+.username {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1em;
 }

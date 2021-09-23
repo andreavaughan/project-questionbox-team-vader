@@ -29,10 +29,6 @@ export const Profile = ({ token, user, isLoading, setIsLoading, setQuestionID })
         
     }, [token])
     
-
-    // console.log(profile[0].username)
-    // console.log(profile[0].questions)
-
     return isLoading ?
         <>
             <strong>Loading...</strong>
@@ -42,17 +38,16 @@ export const Profile = ({ token, user, isLoading, setIsLoading, setQuestionID })
             { profile && (
                 <>
                 <div className="header">
-                    <h1>Profile</h1>
-                    <h3>{profile.username}'s contributions</h3>
+                    <h2>{profile.username}'s contributions</h2>
                     <div className="header-links">
-                        <p>My Questions | My Answers | Bookmarked</p>
+                        <h5>My Questions | My Answers </h5>
                     </div>
                 </div>
                 <div>
                     <div className="">
                         { profile.questions && profile.questions.map((question, idx) => {
                             return (
-                                <Question key={idx} question={question} setQuestionID={setQuestionID} />
+                                <Question token={token} key={idx} question={question} setQuestionID={setQuestionID} />
                             )
                         })}
                     </div>

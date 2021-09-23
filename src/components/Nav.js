@@ -14,9 +14,9 @@ export const Nav = ({ token, clearStorage, username }) => {
                         { token 
                             ? <ul className="navbar-nav">
                                 <Link to="/profile">
-                                    <li className="nav-item nav-link active">
-                                        Profile
-                                    </li>
+                                    <div className="nav-item nav-link active">
+                                        <p>Profile</p>
+                                    </div>
                                 </Link>
                             </ul>  
                             : null
@@ -25,7 +25,9 @@ export const Nav = ({ token, clearStorage, username }) => {
                     <div className="end-nav">
                         { token 
                             ? <div className="loggedin">
-                                <p>Hello, {username}!</p>
+                                <div className="username">
+                                    <p>Hello, {username}!</p>
+                                </div>
                                 <button type="button" className="btn btn-outline-dark" onClick={() => clearStorage('token')} >Logout</button>
                             </div>
                             : <div>

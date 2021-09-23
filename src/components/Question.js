@@ -21,7 +21,7 @@ export const Question = ({ question, setQuestionID, token }) => {
                                         View answers
                                     </button>
                                 </Link> :
-                                 <Link to="/login">
+                                <Link to="/login">
                                     <button className="btn btn-outline-secondary">
                                         Login to view answers
                                     </button>
