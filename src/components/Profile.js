@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Question } from './Question'
 import { Answer } from './Answer'
+import '../styles/profile.css'
 
 export const Profile = ({ token, user, isLoading, setIsLoading, setQuestionID }) => {
     const [ profile, setProfile ] = useState([])

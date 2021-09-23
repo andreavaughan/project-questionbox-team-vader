@@ -4,6 +4,9 @@ export const Answer = ({ token, answer}) => {
     return (
         <>
             <div className="card" key={answer.pk}>
+                <div className="card-header a-header">
+                    Answer
+                </div>
                 <div className="card-body">
                     <blockquote className="blockquote">
                         <p>{answer.answer}</p>

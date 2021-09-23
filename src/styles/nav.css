@@ -2,8 +2,9 @@ nav {
   height: 5em;
 }
 
-p {
+nav p {
   margin-bottom: 0px;
+  font-size: 1.2rem;
 }
 
 .main-nav {
